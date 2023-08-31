@@ -12,26 +12,26 @@
  */
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
-queue_t *queue = NULL;
+    queue_t *queue = NULL;
 
-if (tree == NULL || func == NULL)
-return;
+    if (tree == NULL || func == NULL)
+        return;
 
-queue_push(&queue, (void *)tree);
+    queue_push(&queue, (void *)tree);
 
-while (!queue_is_empty(queue))
-{
-const binary_tree_t *current = (const binary_tree_t *)queue_peek(queue);
+    while (!queue_is_empty(queue))
+    {
+        const binary_tree_t *current = (const binary_tree_t *)queue_peek(queue);
 
-queue_pop(&queue);
-func(current->n);
+        queue_pop(&queue);
+        func(current->n);
 
-if (current->left != NULL)
-queue_push(&queue, (void *)current->left);
-if (current->right != NULL)
-queue_push(&queue, (void *)current->right);
-}
+        if (current->left != NULL)
+            queue_push(&queue, (void *)current->left);
+        if (current->right != NULL)
+            queue_push(&queue, (void *)current->right);
+    }
 
-queue_delete(&queue);
+    queue_delete(&queue);
 }
 
